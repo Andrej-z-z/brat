@@ -7,59 +7,59 @@
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <img src="imgs/backgrounds/novi-beograd-sneg.png" class="main-background">
+  <div class="main-background"></div>
   <header>
     <a href="info.html" class="info-button" title="About Us">info</a>
   </header>
   <main class="main-content">
       <div class="box-container">
       <div class="box">
-        <img src="imgs/letters/B.svg">
+        <img class="box-letter" src="imgs/letters/B.svg">
       </div>
       <div class="box">
-        <img src="imgs/models/COVEK.svg">
+        <img id="model1" src="imgs/models/COVEK.svg">
       </div>
       </div>
       <div class="box-container">
       <div class="box">
-        <img src="imgs/models/COVEK.svg">
+        <img id="model2" src="imgs/models/COVEK.svg">
       </div>
       <div class="box">
-        <img src="imgs/letters/RAT.svg">
+        <img class="box-letter" src="imgs/letters/RAT.svg">
       </div>
       </div>
 
       <div class="box-container">
         <div class="box">
-          <img src="imgs/letters/B.svg">
+          <img class="box-letter" src="imgs/letters/B.svg">
         </div>
         <div class="box">
-          <img src="imgs/models/COVEK.svg">
+          <img id="model3" src="imgs/models/COVEK.svg">
         </div>
         </div>
         <div class="box-container">
         <div class="box">
-          <img src="imgs/models/COVEK.svg">
+          <img id="model4" src="imgs/models/COVEK.svg">
         </div>
         <div class="box">
-          <img src="imgs/letters/RAT.svg">
+          <img class="box-letter" src="imgs/letters/RAT.svg">
         </div>
         </div>
 
         <div class="box-container">
           <div class="box">
-            <img src="imgs/letters/B.svg">
+            <img class="box-letter" src="imgs/letters/B.svg">
           </div>
           <div class="box">
-            <img src="imgs/models/COVEK.svg">
+            <img id="model5" src="imgs/models/COVEK.svg">
           </div>
           </div>
           <div class="box-container">
           <div class="box">
-            <img src="imgs/models/COVEK.svg">
+            <img id="model6" src="imgs/models/COVEK.svg">
           </div>
           <div class="box">
-            <img src="imgs/letters/RAT.svg">
+            <img class="box-letter" src="imgs/letters/RAT.svg">
           </div>
           </div>
   </main>
@@ -68,5 +68,47 @@
       <img class="instagram-logo" src="imgs/logos/instagram-logo-svgrepo-com.svg">
     </a>
   </div>
+  <script>
+    var imageIds = ["model1", "model2", "model3", "model4", "model5", "model6"];
+    var imageSources = {
+        "model1": ["imgs/models/COVEK.svg", "imgs/models/2.png", "imgs/models/3.png"],
+        "model2": ["imgs/models/COVEK.svg", "imgs/models/2.png", "imgs/models/3.png"],
+        "model3": ["imgs/models/COVEK.svg", "imgs/models/2.png", "imgs/models/3.png"],
+        "model4": ["imgs/models/COVEK.svg", "imgs/models/2.png", "imgs/models/3.png"],
+        "model5": ["imgs/models/COVEK.svg", "imgs/models/2.png", "imgs/models/3.png"],
+        "model6": ["imgs/models/COVEK.svg", "imgs/models/2.png", "imgs/models/3.png"]
+    };
+    var intervals = {};
+
+    function changeImage(imageId) {
+        var currentIndex = 0;
+        return function() {
+            var imageElement = document.getElementById(imageId);
+            currentIndex = (currentIndex + 1) % imageSources[imageId].length;
+            imageElement.src = imageSources[imageId][currentIndex];
+        }
+    }
+
+    function startInterval(imageId) {
+        intervals[imageId] = setInterval(changeImage(imageId), 1000);
+    }
+
+    function stopInterval(imageId) {
+        clearInterval(intervals[imageId]);
+    }
+
+    imageIds.forEach(function(imageId) {
+        startInterval(imageId);
+
+        var imageElement = document.getElementById(imageId);
+        imageElement.addEventListener("mouseenter", function() {
+            stopInterval(imageId);
+        });
+        imageElement.addEventListener("mouseleave", function() {
+            startInterval(imageId);
+        });
+    });
+    
+</script>
 </body>
 </html>

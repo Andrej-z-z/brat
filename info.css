@@ -10,12 +10,27 @@ body {
   background-color: black;
 }
 .main-background {
-  height: 100%;
-  width: 100%;
-  object-fit: fill;
+  background-image: url(imgs/backgrounds/3.png);
+  background-repeat: repeat;
+  background-size: 400px;
+  opacity: 0.3;
+  -webkit-filter: blur(2px);
+}
+.home-button {
+  color: white;
   position: fixed;
-  z-index: -1;
-  opacity: 0.4;
+  left: 20px;
+  top: 20px;
+  font-size: 35px;
+  text-decoration: none;
+  transition: color 0.1s;
+}
+.home-button:hover {
+  color: rgb(242, 97, 34);
+}
+.home-button:active {
+  color: rgb(255, 141, 96);
+  transform: translateY(2px);
 }
 .header {
   z-index: 1;
