@@ -16,11 +16,14 @@ body {
 .main-background {
   height: 100%;
   width: 100%;
-  object-fit: none;
+  object-fit: fill;
   position: fixed;
   z-index: -1;
   opacity: 0.4;
+  background-image: url(imgs/backgrounds/3.png);
   background-repeat: repeat;
+  background-size: 400px;
+  filter: blur(2px);
 }
 .background-container {
   position: fixed;
@@ -48,13 +51,6 @@ body {
   grid-template-columns: 500px 500px;
   justify-content: center;
   align-items: center;
-}
-.main-background {
-  background-image: url(imgs/backgrounds/3.png);
-  background-repeat: repeat;
-  background-size: 400px;
-  opacity: 0.3;
-  -webkit-filter: blur(2px);
 }
 .box img {
   width: 100%;
