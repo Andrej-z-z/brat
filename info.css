@@ -75,14 +75,6 @@ body {
   width: 100%;
   position: relative;
 }
-.main-background {
-  height: 100%;
-  width: 100%;
-  object-fit: fill;
-  position: fixed;
-  z-index: -1;
-  opacity: 0.4;
-}
 .header {
   z-index: 1;
   color: white;
