@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>B Rat</title>
   <link rel="stylesheet" href="index.css">
-  <link rel="icon" href="favicon/favicon.ico">
+  <link rel="icon" href="favicon/favicon.gif" type="image/gif"/>
 </head>
 <body>
   <div class="main-background"></div>
   <header>
-    <a href="info" class="info-button" title="About Us">info</a>
+    <a href="info.html" class="info-button" title="About Us">info</a>
   </header>
   <main class="main-content">
       <div class="box-container">
@@ -18,12 +18,20 @@
         <img class="box-letter" src="imgs/letters/B.svg">
       </div>
       <div class="box">
-        <img id="model1" src="imgs/models/COVEK.svg">
+        <img id="model1" class="model" src="imgs/models/model1/1.webp">
+        <div class="product-info-container-left">
+          <div class="product-name">Off-White T-Shirt</div>
+          <div class="product-price">19.99$</div>
+        </div>
       </div>
       </div>
       <div class="box-container">
       <div class="box">
-        <img id="model2" src="imgs/models/COVEK.svg">
+        <img id="model2" class="model" src="imgs/models/model2/1.webp">
+        <div class="product-info-container">
+          <div class="product-name">Black T-Shirt</div>
+          <div class="product-price">19.99$</div>
+        </div>
       </div>
       <div class="box">
         <img class="box-letter" src="imgs/letters/RAT.svg">
@@ -35,12 +43,20 @@
           <img class="box-letter" src="imgs/letters/B.svg">
         </div>
         <div class="box">
-          <img id="model3" src="imgs/models/COVEK.svg">
+          <img id="model3" class="model" src="imgs/models/COVEK.svg">
+          <div class="product-info-container-left">
+            <div class="product-name">Black Hoodie</div>
+            <div class="product-price">44.99$</div>
+          </div>
         </div>
         </div>
         <div class="box-container">
         <div class="box">
-          <img id="model4" src="imgs/models/COVEK.svg">
+          <img id="model4" class="model" src="imgs/models/COVEK.svg">
+          <div class="product-info-container">
+            <div class="product-name">White Hoodie</div>
+            <div class="product-price">44.99$</div>
+          </div>
         </div>
         <div class="box">
           <img class="box-letter" src="imgs/letters/RAT.svg">
@@ -52,12 +68,20 @@
             <img class="box-letter" src="imgs/letters/B.svg">
           </div>
           <div class="box">
-            <img id="model5" src="imgs/models/COVEK.svg">
+            <img id="model5" class="model" src="imgs/models/COVEK.svg">
+            <div class="product-info-container-left">
+              <div class="product-name">Black T-Shirt</div>
+              <div class="product-price">19.99$</div>
+            </div>
           </div>
           </div>
           <div class="box-container">
           <div class="box">
-            <img id="model6" src="imgs/models/COVEK.svg">
+            <img id="model6" class="model" src="imgs/models/COVEK.svg">
+            <div class="product-info-container">
+              <div class="product-name">Black T-Shirt</div>
+              <div class="product-price">19.99$</div>
+            </div>
           </div>
           <div class="box">
             <img class="box-letter" src="imgs/letters/RAT.svg">
@@ -72,8 +96,8 @@
   <script>
     var imageIds = ["model1", "model2", "model3", "model4", "model5", "model6"];
     var imageSources = {
-        "model1": ["imgs/models/COVEK.svg", "imgs/models/2.png", "imgs/models/3.png"],
-        "model2": ["imgs/models/COVEK.svg", "imgs/models/2.png", "imgs/models/3.png"],
+        "model1": ["imgs/models/model1/1.webp", "imgs/models/model1/2.webp", "imgs/models/model1/3.webp", "imgs/models/model1/4.webp", "imgs/models/model1/5.webp", "imgs/models/model1/6.webp", "imgs/models/model1/7.webp", "imgs/models/model1/8.webp"],
+        "model2": ["imgs/models/model2/1.webp", "imgs/models/model2/2.webp", "imgs/models/model2/3.webp", "imgs/models/model2/4.webp", "imgs/models/model2/5.webp", "imgs/models/model2/6.webp", "imgs/models/model2/7.webp", "imgs/models/model2/8.webp"],
         "model3": ["imgs/models/COVEK.svg", "imgs/models/2.png", "imgs/models/3.png"],
         "model4": ["imgs/models/COVEK.svg", "imgs/models/2.png", "imgs/models/3.png"],
         "model5": ["imgs/models/COVEK.svg", "imgs/models/2.png", "imgs/models/3.png"],
@@ -91,22 +115,34 @@
     }
 
     function startInterval(imageId) {
-        intervals[imageId] = setInterval(changeImage(imageId), 1000);
+        intervals[imageId] = setInterval(changeImage(imageId), 650);
     }
 
     function stopInterval(imageId) {
         clearInterval(intervals[imageId]);
+        var imageElement = document.getElementById(imageId);
+        imageElement.src = imageSources[imageId][0]; // Revert back to the first image
     }
 
     imageIds.forEach(function(imageId) {
-        startInterval(imageId);
-
         var imageElement = document.getElementById(imageId);
+        var intervalStarted = false; // Flag to track if interval has started
+        var currentIndex = 0; // Track current index for instant change
         imageElement.addEventListener("mouseenter", function() {
-            stopInterval(imageId);
+            // Instantly change to the second image
+            currentIndex = 1;
+            imageElement.src = imageSources[imageId][currentIndex];
+            // Start interval if not already started
+            if (!intervalStarted) {
+                startInterval(imageId);
+                intervalStarted = true;
+            }
         });
         imageElement.addEventListener("mouseleave", function() {
-            startInterval(imageId);
+            // Reset to the first image and stop interval
+            currentIndex = 0;
+            stopInterval(imageId);
+            intervalStarted = false; // Reset interval flag
         });
     });
     
