@@ -63,17 +63,15 @@ body {
   width: 100%;
   position: relative;
 }
-.main-background {
+.background-container {
   height: 100%;
   width: 100%;
-  object-fit: fill;
+  object-fit: cover;
   position: fixed;
   z-index: -1;
   opacity: 0.25;
-  background-image: url(imgs/backgrounds/3.png);
-  background-repeat: repeat;
-  background-size: 400px;
-  filter: blur(1px);
+  filter: blur(0.25px);
+  background-size: 450px;
 }
 .header {
   z-index: 1;
