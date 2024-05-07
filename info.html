@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="main-background"></div>
+  <div class="background-container"></div>
   <h1 class="header">INFO</h1>
   <a href="/" class="home-button" title="Home page">Home</a>
   <div class="email-container">
@@ -19,5 +19,32 @@
       damjan.nastic@gmail.com
     </a>
   </div>
+  <script>
+    // ZA RANDOM BACKGROUNDE
+    var backgrounds = [
+        'imgs/backgrounds/1.png',
+        'imgs/backgrounds/2.png',
+        'imgs/backgrounds/3.png',
+        'imgs/backgrounds/4.png',
+        'imgs/backgrounds/5.png',
+        'imgs/backgrounds/6.png',
+        'imgs/backgrounds/7.png',
+        'imgs/backgrounds/8.png',
+        // Add more image URLs as needed
+    ];
+
+    // Function to set random background image
+    function setRandomBackground() {
+        // Get a random index from the backgrounds array
+        var randomIndex = Math.floor(Math.random() * backgrounds.length);
+        // Get the selected background image URL
+        var randomBackground = backgrounds[randomIndex];
+        // Set the background image of the background container div using inline style
+        document.querySelector('.background-container').style.backgroundImage = 'url(' + randomBackground + ')';
+    }
+
+    // Call the function to set random background when the page loads
+    window.onload = setRandomBackground;
+  </script>
 </body>
 </html>
